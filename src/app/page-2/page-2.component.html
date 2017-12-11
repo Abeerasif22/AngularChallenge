@@ -1,0 +1,38 @@
+<!-- <footer><progress id='p' max='100'><span>0</span>%</progress></footer> -->
+<div class="question-wrapper">
+
+  <form [formGroup]="quesForm" novalidate (ngSubmit)="onSubmit(quesForm)">
+
+    <ol class="questions-main">
+      <li class="questions-main_content" *ngFor="let item of dataValue">
+        <div class="question-main_headline">{{item.headline}}</div>
+        <div class="questions-main_answers">
+          <ul>
+
+            <li class="content" *ngFor="let subItem of item['choices'] , let i=index">
+              <mat-checkbox *ngIf="item['choices'].length >=3" [checked]="subItem.selected"  value="{{subItem.value}}">{{subItem.label}}
+              </mat-checkbox>
+              <mat-radio-group *ngIf="item['choices'].length  == 2 ">
+
+                <mat-radio-button class="radio" [value]='subItem.value' >{{subItem.label}}</mat-radio-button>
+
+              </mat-radio-group>
+            </li>
+          </ul>
+
+
+          <div *ngIf="item.question_type ==='text'"  >
+            <input type="text" required>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="error" *ngIf="quesForm.get('checkChoice').hasError('required') && quesForm.get('checkChoice').dirty">
+      Please answer all the questions
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="navigate()">Submit</button>
+  </form>
+
+</div>

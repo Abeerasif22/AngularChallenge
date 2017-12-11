@@ -1,0 +1,37 @@
+
+<div class="ques-wrapper">
+
+<form [formGroup]="quesForm" novalidate (ngSubmit)="onSubmit(quesForm)" >
+
+<ol class="questions-main" >
+<li class="questions-main_content"  *ngFor="let item of dataValue , let index=i" [ngClass]="isScrolled ? 'page-scroll' : 'page-scroll-view'">
+<div class="item"></div>
+<div class="question" >{{item.headline}}</div>
+<div class="content">
+    <ul  >
+        <div class="opaque"></div>
+            <li class="content" *ngFor="let subItem of item['choices']" >
+                    <div *ngIf="item['choices'].length >=3 "><input type="checkbox"  (click)="onChange($event)" class="checker">{{subItem.label}}</div>
+   
+                    <div *ngIf="item['choices'].length  == 2 "><input type="radio" (click)="onChange($event)" [value]="subItem.value"  >{{subItem.label}}</div>
+                </li>
+                <div class="opaque"></div>
+    </ul>
+ <div *ngIf="item.question_type ==='text'"><input type="text" formControlName="checkText" required></div>
+</div>
+</li>
+</ol>
+
+<div class="error" *ngIf="quesForm.get('checkChoice').hasError('required') && quesForm.get('checkChoice').dirty">
+  Please click atelast one checkbox
+</div>
+<div class="error" *ngIf="quesForm.get('checkRadio').hasError('required') && quesForm.get('checkChoice').dirty">
+    Please click atlast one checkbox
+  </div>
+  <div class="error" *ngIf="quesForm.get('checkText').hasError('required') && quesForm.get('checkChoice').dirty">
+      Please click atlast one checkbox
+    </div>
+<button type="submit"  class="btn btn-success"  (click)="navigate()">Submit</button>
+</form>
+
+</div>

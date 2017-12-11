@@ -1,0 +1,34 @@
+.question-wrapper{
+  width: 500px;
+  margin: 0 auto ;
+
+}
+input[type="text"]{
+ padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  
+  &:focus{
+ 
+  border-bottom: 1px solid #ccc
+
+  }
+  }
+
+
+.questions-main{
+&_content {
+  transition: background-color 2s ease-out;
+  color: #6db5c9;
+  margin: 150px 0;
+  height: 300px;
+}
+&_answers{
+
+ul{
+  list-style: none
+}
+}
+}
